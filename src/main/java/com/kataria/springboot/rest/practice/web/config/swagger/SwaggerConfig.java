@@ -10,18 +10,22 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+/**
+ * Best way to document various APIs is to logically group them as shown below .
+ * As mostly one controller will be present in a specific package .
+ * <p>
+ * Make multiple dockets for multiple packages i.e. each for one package having
+ * one controller.
+ * <p>
+ * It will be displayed by groupName in swagger UI in top right drop down.
+ * <p>
+ * We can also ignore some controller by setting @APIOperartions(value = "some
+ * Value" , hidden =true) annotation or by regular or ant expression.
+ */
+
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
-
-	// Best way to document various APIs is to logically group them as shown below .
-	// As mostly one controller will be present in
-	// a specific package . Make multiple dockets for multiple packages i.e. each
-	// for one package having one controller. It will be
-	// displayed by groupName in swagger UI in top left drop down.
-	// We can also ignore some controller by setting @APIOperartions(value = "some
-	// Value" , hidden =true)
-	// annotation or by regular or ant expression.
 
 	@Bean
 	public Docket api() {

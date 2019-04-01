@@ -54,7 +54,7 @@ public class VersionedHelloWorld {
 	 * will be mapped with this header with URI itself . If header don't come it is
 	 * 404 for the server.
 	 */
-	@GetMapping(value = "/Hello-world", headers = "version=1.0")
+	@GetMapping(value = "/Hello-world", headers = "version=1.0" )
 	public String helloWorldVersionedByMethodParamVariable() {
 		return "Hello-world-header-on-request-mapping-level ";
 	}

@@ -10,7 +10,6 @@ import com.kataria.springboot.rest.practice.web.helloworld.beans.HelloWorld;
 import com.kataria.springboot.rest.practice.web.helloworld.beans.HelloWorldWithoutGetterSetter;
 
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
 @Api(tags = { "Hello World Service" })
@@ -19,8 +18,7 @@ public class HelloWorldService {
 
 	@GetMapping(path = "/Hello-world")
 	public String helloWold(
-			@ApiParam(value = "Paramter to be printed after hello world", required = true, example = "aaaa",
-					defaultValue = "ABC") @RequestParam(required = true, name = "msg") String msg,
+			@ApiParam(value = "Paramter to be printed after hello world", required = true, example = "aaaa", defaultValue = "ABC") @RequestParam(required = true, name = "msg") String msg,
 			@RequestHeader(required = false, name = "msgHeader", defaultValue = "from Header") String msgHeader) {
 		return "Hello World " + msg + " " + msgHeader;
 	}
