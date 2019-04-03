@@ -9,9 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.kataria.springboot.rest.practice.core.beans.User;
+import com.kataria.springboot.rest.practice.core.beans.UserList;
 import com.kataria.springboot.rest.practice.manager.user.UserResourceManager;
-import com.kataria.springboot.rest.practice.manager.user.beans.User;
-import com.kataria.springboot.rest.practice.manager.user.beans.UserList;
 import com.kataria.springboot.rest.practice.manager.user.exception.UserResourceException;
 import com.kataria.springboot.rest.practice.web.user.helper.resource.support.AddressResource;
 

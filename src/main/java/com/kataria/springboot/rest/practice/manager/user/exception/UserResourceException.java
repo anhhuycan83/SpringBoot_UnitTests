@@ -20,4 +20,8 @@ public class UserResourceException extends CoreException {
 		super(message, cause);
 	}
 
+	public UserResourceException(String message) {
+		super(message);
+	}
+
 }

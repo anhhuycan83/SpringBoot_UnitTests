@@ -1,8 +1,6 @@
-package com.kataria.springboot.rest.practice.manager.user.beans;
+package com.kataria.springboot.rest.practice.core.beans;
 
 import java.util.List;
-
-import com.kataria.springboot.rest.practice.core.beans.RestResponse;
 
 public class UserList extends RestResponse {
 

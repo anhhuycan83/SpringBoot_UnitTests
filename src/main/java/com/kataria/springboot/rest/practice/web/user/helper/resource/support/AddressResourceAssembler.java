@@ -5,7 +5,7 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.*;
 import org.springframework.hateoas.mvc.ResourceAssemblerSupport;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.kataria.springboot.rest.practice.manager.user.beans.User.Address;
+import com.kataria.springboot.rest.practice.core.beans.User.Address;
 import com.kataria.springboot.rest.practice.manager.user.exception.UserResourceException;
 import com.kataria.springboot.rest.practice.web.user.UserResourceService;
 

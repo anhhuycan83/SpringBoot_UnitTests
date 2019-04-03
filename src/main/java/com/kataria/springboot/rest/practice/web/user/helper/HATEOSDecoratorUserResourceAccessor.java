@@ -4,9 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Resource;
 import org.springframework.stereotype.Component;
 
+import com.kataria.springboot.rest.practice.core.beans.User;
+import com.kataria.springboot.rest.practice.core.beans.UserList;
 import com.kataria.springboot.rest.practice.manager.user.UserResourceManager;
-import com.kataria.springboot.rest.practice.manager.user.beans.User;
-import com.kataria.springboot.rest.practice.manager.user.beans.UserList;
 import com.kataria.springboot.rest.practice.manager.user.exception.UserResourceException;
 import com.kataria.springboot.rest.practice.web.user.UserResourceService;
 import com.kataria.springboot.rest.practice.web.user.helper.resource.support.AddressResource;

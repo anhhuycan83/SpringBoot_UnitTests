@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kataria.springboot.rest.practice.core.beans.RestResponse;
-import com.kataria.springboot.rest.practice.manager.user.beans.User;
-import com.kataria.springboot.rest.practice.manager.user.beans.UserList;
+import com.kataria.springboot.rest.practice.core.beans.User;
+import com.kataria.springboot.rest.practice.core.beans.UserList;
 import com.kataria.springboot.rest.practice.manager.user.exception.UserResourceException;
 import com.kataria.springboot.rest.practice.web.user.helper.HttpResponsePrepratorUserResourceAccessor;
 import com.kataria.springboot.rest.practice.web.user.helper.resource.support.AddressResource;
