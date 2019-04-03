@@ -1,4 +1,4 @@
-package com.kataria.springboot.rest.practice.dao;
+package com.kataria.springboot.rest.practice.dao.user;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

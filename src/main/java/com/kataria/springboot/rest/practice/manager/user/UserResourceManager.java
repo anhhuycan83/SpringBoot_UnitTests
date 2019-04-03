@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import com.kataria.springboot.rest.practice.core.beans.User;
 import com.kataria.springboot.rest.practice.core.beans.UserList;
 import com.kataria.springboot.rest.practice.core.validate.Assert;
-import com.kataria.springboot.rest.practice.dao.UserResourceRepository;
+import com.kataria.springboot.rest.practice.dao.user.UserResourceRepository;
 import com.kataria.springboot.rest.practice.manager.user.exception.UserResourceException;
 
 @Component

@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import static org.mockito.BDDMockito.*;
 
-import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Objects;
@@ -19,12 +18,14 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.kataria.springboot.rest.practice.core.beans.User;
 import com.kataria.springboot.rest.practice.core.beans.User.Address;
+import com.kataria.springboot.rest.practice.dao.user.UserResourceRepository;
 import com.kataria.springboot.rest.practice.core.beans.UserList;
-import com.kataria.springboot.rest.practice.dao.UserResourceRepository;
 import com.kataria.springboot.rest.practice.manager.user.exception.UserResourceException;
 
 @ExtendWith(MockitoExtension.class)
 public class UserResourceManagerTest {
+
+	private static final String DATASOURCE_NOT_AVAILABLE = "DATASOURCE_NOT_AVAILABLE";
 
 	@Mock
 	public UserResourceRepository userResourceRepository;
@@ -36,7 +37,7 @@ public class UserResourceManagerTest {
 	@DisplayName("Method:getAllUsers , TestCase:TestForExceptionThrownFromRepository")
 	public void getAllUsers_testForExceptionThrownFromRepository() throws UserResourceException {
 		// given
-		given(userResourceRepository.getAllUsers()).willThrow(new RuntimeException("DataSource not available."));
+		given(userResourceRepository.getAllUsers()).willThrow(new RuntimeException(DATASOURCE_NOT_AVAILABLE));
 		// when
 		UserResourceException actualException = assertThrows(UserResourceException.class, () ->
 		// when
@@ -44,9 +45,9 @@ public class UserResourceManagerTest {
 
 		then(userResourceRepository).shouldHaveNoMoreInteractions();
 
-		assertAll(() -> assertEquals("DataSource not available.", actualException.getMessage()),
+		assertAll(() -> assertEquals(DATASOURCE_NOT_AVAILABLE, actualException.getMessage()),
 				() -> assertTrue(actualException.getCause().getClass() == RuntimeException.class),
-				() -> assertEquals("DataSource not available.", actualException.getCause().getMessage()));
+				() -> assertEquals(DATASOURCE_NOT_AVAILABLE, actualException.getCause().getMessage()));
 
 		then(userResourceRepository).should().getAllUsers();
 	}
@@ -115,7 +116,7 @@ public class UserResourceManagerTest {
 	@DisplayName("Method:getUser , TestCase:TestForExceptionThrownFromRepository")
 	public void getUser_testForExceptionThrownFromRepository() throws UserResourceException {
 		// given
-		given(userResourceRepository.getAllUsers()).willThrow(new RuntimeException("DataSource not available."));
+		given(userResourceRepository.getAllUsers()).willThrow(new RuntimeException(DATASOURCE_NOT_AVAILABLE));
 		// when
 		UserResourceException actualException = assertThrows(UserResourceException.class,
 				() -> userResourceManager.getUser(1), "Users list cannot be null.");
@@ -123,9 +124,9 @@ public class UserResourceManagerTest {
 		then(userResourceRepository).shouldHaveNoMoreInteractions();
 
 		// then
-		assertAll(() -> assertEquals("DataSource not available.", actualException.getMessage()),
+		assertAll(() -> assertEquals(DATASOURCE_NOT_AVAILABLE, actualException.getMessage()),
 				() -> assertTrue(actualException.getCause().getClass() == RuntimeException.class),
-				() -> assertEquals("DataSource not available.", actualException.getCause().getMessage()));
+				() -> assertEquals(DATASOURCE_NOT_AVAILABLE, actualException.getCause().getMessage()));
 
 		then(userResourceRepository).should().getAllUsers();
 
@@ -192,7 +193,7 @@ public class UserResourceManagerTest {
 	public void addUser_unSuccessfullyAddedCase() throws UserResourceException {
 		// given
 		given(userResourceRepository.addUser(any(User.class)))
-				.willThrow(new RuntimeException("DataSource not available."));
+				.willThrow(new RuntimeException(DATASOURCE_NOT_AVAILABLE));
 
 		UserResourceException actualException = assertThrows(UserResourceException.class,
 				() -> userResourceManager.addUser(User.of(0, "Mansi")));
@@ -200,9 +201,9 @@ public class UserResourceManagerTest {
 		then(userResourceRepository).shouldHaveNoMoreInteractions();
 
 		// then
-		assertAll(() -> assertEquals("DataSource not available.", actualException.getMessage()),
+		assertAll(() -> assertEquals(DATASOURCE_NOT_AVAILABLE, actualException.getMessage()),
 				() -> assertTrue(actualException.getCause().getClass() == RuntimeException.class),
-				() -> assertEquals("DataSource not available.", actualException.getCause().getMessage()));
+				() -> assertEquals(DATASOURCE_NOT_AVAILABLE, actualException.getCause().getMessage()));
 
 		then(userResourceRepository).should().addUser(any(User.class));
 
@@ -229,16 +230,16 @@ public class UserResourceManagerTest {
 	@DisplayName("Method:deleteUser , TestCase:ExceptionThrownFromRepositoryCase")
 	public void deleteUser_exceptionThrownFromRepositoryCase() {
 
-		given(userResourceRepository.removeUser(anyInt())).willThrow(new RuntimeException("DataSource not available."));
+		given(userResourceRepository.removeUser(anyInt())).willThrow(new RuntimeException(DATASOURCE_NOT_AVAILABLE));
 
 		UserResourceException actualException = assertThrows(UserResourceException.class,
 				() -> userResourceManager.deleteUser(1));
 
 		then(userResourceRepository).shouldHaveNoMoreInteractions();
 
-		assertAll(() -> assertEquals("DataSource not available.", actualException.getMessage()),
+		assertAll(() -> assertEquals(DATASOURCE_NOT_AVAILABLE, actualException.getMessage()),
 				() -> assertTrue(actualException.getCause().getClass() == RuntimeException.class),
-				() -> assertEquals("DataSource not available.", actualException.getCause().getMessage()));
+				() -> assertEquals(DATASOURCE_NOT_AVAILABLE, actualException.getCause().getMessage()));
 
 		then(userResourceRepository).should().removeUser(anyInt());
 
@@ -283,7 +284,7 @@ public class UserResourceManagerTest {
 	@DisplayName("Method:getAllCorresspondingAddress , TestCase:TestForExceptionThrownFromRepository")
 	public void getAllCorresspondingAddress_testForExceptionThrownFromRepository() throws UserResourceException {
 		// given
-		given(userResourceRepository.getAllUsers()).willThrow(new RuntimeException("DataSource not available."));
+		given(userResourceRepository.getAllUsers()).willThrow(new RuntimeException(DATASOURCE_NOT_AVAILABLE));
 		// when
 		UserResourceException actualException = assertThrows(UserResourceException.class, () ->
 		// when
@@ -291,9 +292,9 @@ public class UserResourceManagerTest {
 
 		then(userResourceRepository).shouldHaveNoMoreInteractions();
 
-		assertAll(() -> assertEquals("DataSource not available.", actualException.getMessage()),
+		assertAll(() -> assertEquals(DATASOURCE_NOT_AVAILABLE, actualException.getMessage()),
 				() -> assertTrue(actualException.getCause().getClass() == RuntimeException.class),
-				() -> assertEquals("DataSource not available.", actualException.getCause().getMessage()));
+				() -> assertEquals(DATASOURCE_NOT_AVAILABLE, actualException.getCause().getMessage()));
 
 		then(userResourceRepository).should().getAllUsers();
 	}
@@ -352,9 +353,9 @@ public class UserResourceManagerTest {
 		then(userResourceRepository).shouldHaveNoMoreInteractions();
 
 		// assert null as have not been set before.
-		assertNotNull(actualusersAddresses);
-		assertArrayEquals(new Address[] { Address.of("k612"), Address.of("ucp39") },
-				actualusersAddresses.stream().toArray(Address[]::new));
+		assertAll(() -> assertNotNull(actualusersAddresses),
+				() -> assertArrayEquals(new Address[] { Address.of("k612"), Address.of("ucp39") },
+						actualusersAddresses.stream().toArray(Address[]::new)));
 
 		then(userResourceRepository).should(times(2)).getAllUsers();
 
@@ -364,16 +365,16 @@ public class UserResourceManagerTest {
 	@DisplayName("Method:getAllJuniors , TestCase:TestForExceptionThrownFromRepository")
 	public void getAllJuniors_testForExceptionThrownFromRepository() throws UserResourceException {
 		// given
-		given(userResourceRepository.getAllUsers()).willThrow(new RuntimeException("DataSource not available."));
+		given(userResourceRepository.getAllUsers()).willThrow(new RuntimeException(DATASOURCE_NOT_AVAILABLE));
 		// when
 		UserResourceException actualException = assertThrows(UserResourceException.class,
 				() -> userResourceManager.getAllCorresspondingAddress(1), "Users cannot be null.");
 
 		then(userResourceRepository).shouldHaveNoMoreInteractions();
 
-		assertAll(() -> assertEquals("DataSource not available.", actualException.getMessage()),
+		assertAll(() -> assertEquals(DATASOURCE_NOT_AVAILABLE, actualException.getMessage()),
 				() -> assertTrue(actualException.getCause().getClass() == RuntimeException.class),
-				() -> assertEquals("DataSource not available.", actualException.getCause().getMessage()));
+				() -> assertEquals(DATASOURCE_NOT_AVAILABLE, actualException.getCause().getMessage()));
 
 		then(userResourceRepository).should().getAllUsers();
 	}
@@ -432,8 +433,8 @@ public class UserResourceManagerTest {
 		then(userResourceRepository).shouldHaveNoMoreInteractions();
 
 		// assert null as have not been set before.
-		assertNotNull(juniors);
-		assertArrayEquals(new String[] { "Deepak", "Dheeraj", "Franka" }, juniors.stream().toArray(String[]::new));
+		assertAll(() -> assertNotNull(juniors), () -> assertArrayEquals(new String[] { "Deepak", "Dheeraj", "Franka" },
+				juniors.stream().toArray(String[]::new)));
 
 		then(userResourceRepository).should(times(2)).getAllUsers();
 
