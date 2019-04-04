@@ -9,13 +9,9 @@ import java.util.Objects;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.junit.jupiter.MockitoExtension;
-
 import com.kataria.springboot.rest.practice.core.beans.User;
 import com.kataria.springboot.rest.practice.core.data.user.UserSampleDataProvider;
 
-@ExtendWith(MockitoExtension.class)
 public class InMemoryUserResourceRepositoryTest extends AbstractInMemoryUserResourceRepositoryTest {
 
 	@BeforeEach

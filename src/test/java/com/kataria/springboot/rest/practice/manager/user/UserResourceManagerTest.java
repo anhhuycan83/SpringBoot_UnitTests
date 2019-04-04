@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Objects;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
@@ -19,11 +21,14 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import com.kataria.springboot.rest.practice.core.beans.User;
 import com.kataria.springboot.rest.practice.core.beans.User.Address;
 import com.kataria.springboot.rest.practice.core.data.user.UserSampleDataProvider;
+import com.kataria.springboot.rest.practice.core.tags.TagsConstants;
 import com.kataria.springboot.rest.practice.dao.user.UserResourceRepository;
 import com.kataria.springboot.rest.practice.core.beans.UserList;
 import com.kataria.springboot.rest.practice.manager.user.exception.UserResourceException;
 
 @ExtendWith(MockitoExtension.class)
+@Tags({ @Tag(TagsConstants.DEV), @Tag(TagsConstants.PROD), @Tag(TagsConstants.QA), @Tag(TagsConstants.RFS),
+		@Tag(TagsConstants.MANAGER), @Tag(TagsConstants.CI_SERVER) })
 public class UserResourceManagerTest {
 
 	private static final String DATASOURCE_NOT_AVAILABLE = "DATASOURCE_NOT_AVAILABLE";
