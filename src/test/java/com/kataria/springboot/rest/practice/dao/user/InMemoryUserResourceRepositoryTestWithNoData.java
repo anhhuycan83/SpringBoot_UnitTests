@@ -25,14 +25,14 @@ public class InMemoryUserResourceRepositoryTestWithNoData extends AbstractInMemo
 	}
 
 	@Test
-	@DisplayName("Method:getAllUsers , TestCase:GetAllUsersForNoPredefinedData")
+	@DisplayName("Method:getAllUsers , TestCase:GetAllUsersForEmptyPredefinedData")
 	public void getAllUsers() {
 		Map<Integer, User> actualUsersMap = inMemoryUserResourceRepository.getAllUsers();
 		assertTrue(() -> actualUsersMap.isEmpty());
 	}
 
 	@Test
-	@DisplayName("Method:addUser , TestCase:AddUserForNoPredefinedData")
+	@DisplayName("Method:addUser , TestCase:AddUserForEmptyPredefinedData")
 	public void addUser() {
 		User userActuallyAdded = inMemoryUserResourceRepository.addUser(User.of(0, "Sahil"));
 		assertAll(() -> assertNotNull(userActuallyAdded), () -> assertEquals(User.of(1, "Sahil"), userActuallyAdded),
@@ -41,7 +41,7 @@ public class InMemoryUserResourceRepositoryTestWithNoData extends AbstractInMemo
 	}
 
 	@Test
-	@DisplayName("Method:removeUser , TestCase:RemoveUserFromNoPredefinedData")
+	@DisplayName("Method:removeUser , TestCase:RemoveUserFromEmptyPredefinedData")
 	public void removeUser() {
 		User actuallyRemoveduser = inMemoryUserResourceRepository.removeUser(5);
 		assertAll(() -> assertTrue(inMemoryUserResourceRepository.getAllUsers().isEmpty()),
