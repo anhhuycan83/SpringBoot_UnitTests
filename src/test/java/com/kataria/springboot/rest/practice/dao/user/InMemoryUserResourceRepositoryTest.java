@@ -19,7 +19,7 @@ public class InMemoryUserResourceRepositoryTest extends AbstractInMemoryUserReso
 
 	@BeforeEach
 	public void setup() throws Throwable {
-		initialiseData(() -> inMemoryUserResourceRepository.initData());
+		initialiseData(() -> inMemoryUserResourceRepository.initData(UserResourceRepository.sampleUsersMap()));
 	}
 
 	@Test

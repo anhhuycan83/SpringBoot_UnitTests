@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -20,7 +21,7 @@ public class InMemoryUserResourceRepositoryTestWithNoData extends AbstractInMemo
 
 	@BeforeEach
 	public void setup() throws Throwable {
-		initialiseData(() -> inMemoryUserResourceRepository.initEmpty());
+		initialiseData(() -> inMemoryUserResourceRepository.initData(new LinkedHashMap<>()));
 	}
 
 	@Test
@@ -35,7 +36,8 @@ public class InMemoryUserResourceRepositoryTestWithNoData extends AbstractInMemo
 	public void addUser() {
 		User userActuallyAdded = inMemoryUserResourceRepository.addUser(User.of(0, "Sahil"));
 		assertAll(() -> assertNotNull(userActuallyAdded), () -> assertEquals(User.of(1, "Sahil"), userActuallyAdded),
-				() -> assertTrue(() -> inMemoryUserResourceRepository.getAllUsers().get(1).equals(User.of(1, "Sahil"))));
+				() -> assertTrue(
+						() -> inMemoryUserResourceRepository.getAllUsers().get(1).equals(User.of(1, "Sahil"))));
 	}
 
 	@Test

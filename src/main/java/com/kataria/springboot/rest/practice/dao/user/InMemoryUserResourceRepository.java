@@ -1,11 +1,9 @@
 package com.kataria.springboot.rest.practice.dao.user;
 
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
-import javax.annotation.PostConstruct;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kataria.springboot.rest.practice.core.beans.User;;
@@ -13,15 +11,11 @@ import com.kataria.springboot.rest.practice.core.beans.User;;
 @Repository
 public class InMemoryUserResourceRepository implements UserResourceRepository {
 
-	private Map<Integer, User> usersMap = new HashMap<>();
+	private Map<Integer, User> usersMap;
 
-	@PostConstruct
-	public void initData() {
-		usersMap = UserResourceRepository.sampleUsersMap();
-	}
-
-	public void initEmpty() {
-		usersMap = new HashMap<>();
+	@Autowired
+	public void initData(Map<Integer, User> usersMap) {
+		this.usersMap = usersMap;
 	}
 
 	public Map<Integer, User> getAllUsers() {
