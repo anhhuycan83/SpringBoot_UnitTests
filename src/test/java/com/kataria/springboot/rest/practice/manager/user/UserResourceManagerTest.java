@@ -18,6 +18,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.kataria.springboot.rest.practice.core.beans.User;
 import com.kataria.springboot.rest.practice.core.beans.User.Address;
+import com.kataria.springboot.rest.practice.core.data.user.UserSampleDataProvider;
 import com.kataria.springboot.rest.practice.dao.user.UserResourceRepository;
 import com.kataria.springboot.rest.practice.core.beans.UserList;
 import com.kataria.springboot.rest.practice.manager.user.exception.UserResourceException;
@@ -90,7 +91,7 @@ public class UserResourceManagerTest {
 	@DisplayName("Method:getAllUsers , TestCase:TestForAtLeastOneUser")
 	public void getAllUsers_testForAtLeastOneUser() throws UserResourceException {
 		// given
-		given(userResourceRepository.getAllUsers()).willReturn(UserResourceRepository.sampleUsersMap());
+		given(userResourceRepository.getAllUsers()).willReturn(UserSampleDataProvider.sampleUsersMap());
 		// whens
 		UserList userList = userResourceManager.getAllUsers();
 
@@ -103,7 +104,7 @@ public class UserResourceManagerTest {
 			assertTrue((Objects.nonNull(userList.getUsers()) && !userList.getUsers().isEmpty()),
 					"Users in UserList Object cannot be null.");
 		}, () -> {
-			assertArrayEquals(UserResourceRepository.sampleUsersMap().values().stream().toArray(User[]::new),
+			assertArrayEquals(UserSampleDataProvider.sampleUsersMap().values().stream().toArray(User[]::new),
 					userList.getUsers().stream().toArray(User[]::new), () -> "Both Users List must be same .");
 		});
 
@@ -170,7 +171,7 @@ public class UserResourceManagerTest {
 	@DisplayName("Method:getUser , TestCase:TestForAtLeastOneUser")
 	public void getUser_testForAtLeastOneUser() throws UserResourceException {
 		// given
-		given(userResourceRepository.getAllUsers()).willReturn(UserResourceRepository.sampleUsersMap());
+		given(userResourceRepository.getAllUsers()).willReturn(UserSampleDataProvider.sampleUsersMap());
 		// whens
 		User user = userResourceManager.getUser(1);
 
@@ -341,7 +342,7 @@ public class UserResourceManagerTest {
 	@DisplayName("Method:getAllCorresspondingAddress , TestCase:SucessCase")
 	public void getAllCorresspondingAddress_sucessCase() throws UserResourceException {
 		// given
-		given(userResourceRepository.getAllUsers()).willReturn(UserResourceRepository.sampleUsersMap());
+		given(userResourceRepository.getAllUsers()).willReturn(UserSampleDataProvider.sampleUsersMap());
 
 		// when
 		List<User.Address> actualusersAddresses = userResourceManager.getAllCorresspondingAddress(1);
@@ -421,7 +422,7 @@ public class UserResourceManagerTest {
 	@DisplayName("Method:getAllJuniors , TestCase:SuucessCase()")
 	public void getAllJuniors_suucessCase() throws UserResourceException {
 		// given
-		given(userResourceRepository.getAllUsers()).willReturn(UserResourceRepository.sampleUsersMap());
+		given(userResourceRepository.getAllUsers()).willReturn(UserSampleDataProvider.sampleUsersMap());
 
 		// when
 		List<String> juniors = userResourceManager.getAllJuniors(1);

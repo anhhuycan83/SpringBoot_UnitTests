@@ -13,13 +13,14 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.kataria.springboot.rest.practice.core.beans.User;
+import com.kataria.springboot.rest.practice.core.data.user.UserSampleDataProvider;
 
 @ExtendWith(MockitoExtension.class)
 public class InMemoryUserResourceRepositoryTest extends AbstractInMemoryUserResourceRepositoryTest {
 
 	@BeforeEach
 	public void setup() throws Throwable {
-		initialiseData(() -> inMemoryUserResourceRepository.initData(UserResourceRepository.sampleUsersMap()));
+		initialiseData(() -> inMemoryUserResourceRepository.initData(UserSampleDataProvider.sampleUsersMap()));
 	}
 
 	@Test
@@ -28,7 +29,7 @@ public class InMemoryUserResourceRepositoryTest extends AbstractInMemoryUserReso
 		Map<Integer, User> actualUsersMap = inMemoryUserResourceRepository.getAllUsers();
 		assertAll(() -> assertTrue(Objects.nonNull(actualUsersMap) && !actualUsersMap.isEmpty()),
 				() -> assertArrayEquals(
-						UserResourceRepository.sampleUsersMap().entrySet().stream().toArray(Entry[]::new),
+						UserSampleDataProvider.sampleUsersMap().entrySet().stream().toArray(Entry[]::new),
 						actualUsersMap.entrySet().stream().toArray(Entry[]::new)));
 	}
 
