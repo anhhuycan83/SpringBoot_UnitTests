@@ -15,17 +15,17 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import com.kataria.springboot.rest.practice.core.beans.User;
 
 @ExtendWith(MockitoExtension.class)
-public class UserResourceRepositoryImplTest extends AbstractUserResourceRepositoryImplTest {
+public class InMemoryUserResourceRepositoryTest extends AbstractInMemoryUserResourceRepositoryTest {
 
 	@BeforeEach
 	public void setup() throws Throwable {
-		initialiseData(() -> userResourceRepositoryImpl.initData());
+		initialiseData(() -> inMemoryUserResourceRepository.initData());
 	}
 
 	@Test
 	@DisplayName("Method:getAllUsers , TestCase:GetAllUsersForPredefinedData")
 	public void getAllUsers() {
-		Map<Integer, User> actualUsersMap = userResourceRepositoryImpl.getAllUsers();
+		Map<Integer, User> actualUsersMap = inMemoryUserResourceRepository.getAllUsers();
 		assertAll(() -> assertTrue(Objects.nonNull(actualUsersMap) && !actualUsersMap.isEmpty()),
 				() -> assertArrayEquals(
 						UserResourceRepository.sampleUsersMap().entrySet().stream().toArray(Entry[]::new),
@@ -35,17 +35,17 @@ public class UserResourceRepositoryImplTest extends AbstractUserResourceReposito
 	@Test
 	@DisplayName("Method:addUser , TestCase:AddUserForPredefinedData")
 	public void addUser() {
-		User user = userResourceRepositoryImpl.addUser(User.of(0, "Sahil"));
+		User user = inMemoryUserResourceRepository.addUser(User.of(0, "Sahil"));
 		assertAll(() -> Objects.nonNull(user), () -> assertEquals(User.of(6, "Sahil"), user),
-				() -> assertTrue(userResourceRepositoryImpl.getAllUsers().get(6).equals(User.of(6, "Sahil"))));
+				() -> assertTrue(inMemoryUserResourceRepository.getAllUsers().get(6).equals(User.of(6, "Sahil"))));
 	}
 
 	@Test
 	@DisplayName("Method:removeUser , TestCase:RemoveUserFromPredefinedData")
 	public void removeUser() {
-		User actuallyRemoveduser = userResourceRepositoryImpl.removeUser(5);
+		User actuallyRemoveduser = inMemoryUserResourceRepository.removeUser(5);
 		assertAll(() -> assertEquals(User.of(5, "Rashmi"), actuallyRemoveduser),
-				() -> assertTrue(() -> !userResourceRepositoryImpl.getAllUsers().containsKey(5)));
+				() -> assertTrue(() -> !inMemoryUserResourceRepository.getAllUsers().containsKey(5)));
 	}
 
 }

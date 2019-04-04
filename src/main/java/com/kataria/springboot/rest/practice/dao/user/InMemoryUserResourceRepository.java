@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.kataria.springboot.rest.practice.core.beans.User;;
 
 @Repository
-public class UserResourceRepositoryImpl implements UserResourceRepository {
+public class InMemoryUserResourceRepository implements UserResourceRepository {
 
 	private Map<Integer, User> usersMap = new HashMap<>();
 

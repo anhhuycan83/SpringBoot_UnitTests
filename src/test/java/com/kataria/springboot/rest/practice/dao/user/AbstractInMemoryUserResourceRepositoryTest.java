@@ -2,9 +2,9 @@ package com.kataria.springboot.rest.practice.dao.user;
 
 import org.junit.jupiter.api.function.Executable;
 
-public abstract class AbstractUserResourceRepositoryImplTest {
+public abstract class AbstractInMemoryUserResourceRepositoryTest {
 
-	protected UserResourceRepositoryImpl userResourceRepositoryImpl = new UserResourceRepositoryImpl();
+	protected InMemoryUserResourceRepository inMemoryUserResourceRepository = new InMemoryUserResourceRepository();
 
 	protected void initialiseData(Executable executable) throws Throwable {
 		executable.execute();

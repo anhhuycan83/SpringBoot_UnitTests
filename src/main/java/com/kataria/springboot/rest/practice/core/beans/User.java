@@ -180,32 +180,32 @@ public class User extends RestResponse implements Cloneable {
 			user = new User();
 		}
 
-		public UserBuilder setId(int id) {
+		public UserBuilder id(int id) {
 			this.user.id = id;
 			return this;
 		}
 
-		public UserBuilder setFirstName(String firstName) {
+		public UserBuilder firstName(String firstName) {
 			this.user.firstName = firstName;
 			return this;
 		}
 
-		public UserBuilder setDateOfBirth(Date dateOfBirth) {
+		public UserBuilder dateOfBirth(Date dateOfBirth) {
 			this.user.dateOfBirth = dateOfBirth;
 			return this;
 		}
 
-		public UserBuilder setAddress(Address address) {
+		public UserBuilder address(Address address) {
 			this.user.address = address;
 			return this;
 		}
 
-		public UserBuilder setCorrespondingAddresses(List<Address> correspondingAddresses) {
+		public UserBuilder correspondingAddresses(List<Address> correspondingAddresses) {
 			this.user.correspondingAddresses = correspondingAddresses;
 			return this;
 		}
 
-		public UserBuilder setJuniors(List<String> juniors) {
+		public UserBuilder juniors(List<String> juniors) {
 			this.user.juniors = juniors;
 			return this;
 		}
@@ -215,28 +215,28 @@ public class User extends RestResponse implements Cloneable {
 		}
 	}
 
-	public static UserBuilder Id(int id) {
-		return new UserBuilder().setId(id);
+	public static UserBuilder id(int id) {
+		return new UserBuilder().id(id);
 	}
 
-	public static UserBuilder FirstName(String firstName) {
-		return new UserBuilder().setFirstName(firstName);
+	public static UserBuilder firstName(String firstName) {
+		return new UserBuilder().firstName(firstName);
 	}
 
-	public static UserBuilder DateOfBirth(Date dateOfBirth) {
-		return new UserBuilder().setDateOfBirth(dateOfBirth);
+	public static UserBuilder dateOfBirth(Date dateOfBirth) {
+		return new UserBuilder().dateOfBirth(dateOfBirth);
 	}
 
-	public static UserBuilder Address(Address address) {
-		return new UserBuilder().setAddress(address);
+	public static UserBuilder address(Address address) {
+		return new UserBuilder().address(address);
 	}
 
-	public static UserBuilder CorrespondingAddresses(List<Address> correspondingAddresses) {
-		return new UserBuilder().setCorrespondingAddresses(correspondingAddresses);
+	public static UserBuilder correspondingAddresses(List<Address> correspondingAddresses) {
+		return new UserBuilder().correspondingAddresses(correspondingAddresses);
 	}
 
-	public static UserBuilder Juniors(List<String> juniors) {
-		return new UserBuilder().setJuniors(juniors);
+	public static UserBuilder juniors(List<String> juniors) {
+		return new UserBuilder().juniors(juniors);
 	}
 
 	@Override

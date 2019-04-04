@@ -16,33 +16,33 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import com.kataria.springboot.rest.practice.core.beans.User;
 
 @ExtendWith(MockitoExtension.class)
-public class UserResourceRepositoryImplTestWithNoData extends AbstractUserResourceRepositoryImplTest {
+public class InMemoryUserResourceRepositoryTestWithNoData extends AbstractInMemoryUserResourceRepositoryTest {
 
 	@BeforeEach
 	public void setup() throws Throwable {
-		initialiseData(() -> userResourceRepositoryImpl.initEmpty());
+		initialiseData(() -> inMemoryUserResourceRepository.initEmpty());
 	}
 
 	@Test
 	@DisplayName("Method:getAllUsers , TestCase:GetAllUsersForNoPredefinedData")
 	public void getAllUsers() {
-		Map<Integer, User> actualUsersMap = userResourceRepositoryImpl.getAllUsers();
+		Map<Integer, User> actualUsersMap = inMemoryUserResourceRepository.getAllUsers();
 		assertTrue(() -> actualUsersMap.isEmpty());
 	}
 
 	@Test
 	@DisplayName("Method:addUser , TestCase:AddUserForNoPredefinedData")
 	public void addUser() {
-		User userActuallyAdded = userResourceRepositoryImpl.addUser(User.of(0, "Sahil"));
+		User userActuallyAdded = inMemoryUserResourceRepository.addUser(User.of(0, "Sahil"));
 		assertAll(() -> assertNotNull(userActuallyAdded), () -> assertEquals(User.of(1, "Sahil"), userActuallyAdded),
-				() -> assertTrue(() -> userResourceRepositoryImpl.getAllUsers().get(1).equals(User.of(1, "Sahil"))));
+				() -> assertTrue(() -> inMemoryUserResourceRepository.getAllUsers().get(1).equals(User.of(1, "Sahil"))));
 	}
 
 	@Test
 	@DisplayName("Method:removeUser , TestCase:RemoveUserFromNoPredefinedData")
 	public void removeUser() {
-		User actuallyRemoveduser = userResourceRepositoryImpl.removeUser(5);
-		assertAll(() -> assertTrue(userResourceRepositoryImpl.getAllUsers().isEmpty()),
+		User actuallyRemoveduser = inMemoryUserResourceRepository.removeUser(5);
+		assertAll(() -> assertTrue(inMemoryUserResourceRepository.getAllUsers().isEmpty()),
 				() -> assertNull(actuallyRemoveduser));
 	}
 
