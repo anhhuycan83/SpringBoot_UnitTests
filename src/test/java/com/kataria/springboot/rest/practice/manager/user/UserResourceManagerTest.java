@@ -12,8 +12,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable;
-import org.junit.jupiter.api.condition.EnabledIfSystemProperty;
 import org.junit.jupiter.api.condition.EnabledOnJre;
 import org.junit.jupiter.api.condition.EnabledOnOs;
 import org.junit.jupiter.api.condition.JRE;
@@ -27,19 +25,18 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import com.kataria.springboot.rest.practice.core.beans.User;
 import com.kataria.springboot.rest.practice.core.beans.User.Address;
 import com.kataria.springboot.rest.practice.core.data.user.UserSampleDataProvider;
+import com.kataria.springboot.rest.practice.core.support.test.TestLifeCycleMetaDataSupport;
 import com.kataria.springboot.rest.practice.core.tags.TagsConstants;
 import com.kataria.springboot.rest.practice.dao.user.UserResourceRepository;
 import com.kataria.springboot.rest.practice.core.beans.UserList;
 import com.kataria.springboot.rest.practice.manager.user.exception.UserResourceException;
 
-@EnabledIfSystemProperty(named = "junit.version", matches = "5")
-@EnabledIfEnvironmentVariable(named = "environment", matches = "dev")
 @EnabledOnOs({ OS.LINUX, OS.WINDOWS, OS.MAC, OS.SOLARIS, OS.AIX })
 @EnabledOnJre({ JRE.JAVA_8, JRE.JAVA_9, JRE.JAVA_10, JRE.JAVA_11, JRE.JAVA_12, JRE.JAVA_13 })
 @ExtendWith(MockitoExtension.class)
 @Tags({ @Tag(TagsConstants.DEV), @Tag(TagsConstants.PROD), @Tag(TagsConstants.QA), @Tag(TagsConstants.RFS),
 		@Tag(TagsConstants.MANAGER), @Tag(TagsConstants.CI_SERVER) })
-public class UserResourceManagerTest {
+public class UserResourceManagerTest implements TestLifeCycleMetaDataSupport {
 
 	private static final String DATASOURCE_NOT_AVAILABLE = "DATASOURCE_NOT_AVAILABLE";
 

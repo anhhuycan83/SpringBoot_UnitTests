@@ -9,8 +9,6 @@ import java.util.Objects;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable;
-import org.junit.jupiter.api.condition.EnabledIfSystemProperty;
 import org.junit.jupiter.api.condition.EnabledOnJre;
 import org.junit.jupiter.api.condition.EnabledOnOs;
 import org.junit.jupiter.api.condition.JRE;
@@ -19,15 +17,13 @@ import org.junit.jupiter.api.condition.OS;
 import com.kataria.springboot.rest.practice.core.beans.User;
 import com.kataria.springboot.rest.practice.core.data.user.UserSampleDataProvider;
 
-@EnabledIfSystemProperty(named = "junit.version", matches = "5")
-@EnabledIfEnvironmentVariable(named = "environment", matches = "dev")
 @EnabledOnOs({ OS.LINUX, OS.WINDOWS, OS.MAC, OS.SOLARIS, OS.AIX })
 @EnabledOnJre({ JRE.JAVA_8, JRE.JAVA_9, JRE.JAVA_10, JRE.JAVA_11, JRE.JAVA_12, JRE.JAVA_13 })
 public class InMemoryUserResourceRepositoryTest extends AbstractInMemoryUserResourceRepositoryTest {
 
 	@BeforeEach
 	public void setup() throws Throwable {
-		initialiseData(() -> inMemoryUserResourceRepository.initData(UserSampleDataProvider.sampleUsersMap()));
+		initialiseData(UserSampleDataProvider::sampleUsersMap);
 	}
 
 	@Test
