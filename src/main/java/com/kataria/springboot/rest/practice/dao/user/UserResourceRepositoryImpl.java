@@ -16,8 +16,12 @@ public class UserResourceRepositoryImpl implements UserResourceRepository {
 	private Map<Integer, User> usersMap = new HashMap<>();
 
 	@PostConstruct
-	public void init() {
+	public void initData() {
 		usersMap = UserResourceRepository.sampleUsersMap();
+	}
+
+	public void initEmpty() {
+		usersMap = new HashMap<>();
 	}
 
 	public Map<Integer, User> getAllUsers() {
